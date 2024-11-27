@@ -1,0 +1,17 @@
+﻿@model List<Test.Models.BD.Donuts>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Donuts</h2>
+
+
+@foreach (var donut in Model)
+{
+    <div>
+        @donut.Id <br />
+        @donut.Name
+    </div>
+}
