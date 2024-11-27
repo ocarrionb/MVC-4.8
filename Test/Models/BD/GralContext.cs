@@ -22,9 +22,11 @@ namespace Test.Models.BD
         public virtual DbSet<Concept> Concept { get; set; }
         public virtual DbSet<Courses> Courses { get; set; }
         public virtual DbSet<Customer> Customer { get; set; }
+        public virtual DbSet<CustomerTmp> CustomerTmp { get; set; }
         public virtual DbSet<Donuts> Donuts { get; set; }
         public virtual DbSet<Members> Members { get; set; }
         public virtual DbSet<Product> Product { get; set; }
+        public virtual DbSet<ProductTmp> ProductTmp { get; set; }
         public virtual DbSet<Sale> Sale { get; set; }
         public virtual DbSet<Sales> Sales { get; set; }
         public virtual DbSet<User> User { get; set; }
@@ -81,6 +83,21 @@ namespace Test.Models.BD
                     .HasMaxLength(50);
             });
 
+            modelBuilder.Entity<CustomerTmp>(entity =>
+            {
+                entity.HasKey(e => e.CustomerId);
+
+                entity.ToTable("CustomerTMP");
+
+                entity.Property(e => e.LastName)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
             modelBuilder.Entity<Members>(entity =>
             {
                 entity.HasKey(e => e.MemberId);
@@ -115,6 +132,25 @@ namespace Test.Models.BD
             modelBuilder.Entity<Product>(entity =>
             {
                 entity.Property(e => e.Cost).HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.Name)
+                    .IsRequired()
+                    .HasMaxLength(50);
+
+                entity.Property(e => e.UnitPrice)
+                    .IsRequired()
+                    .HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<ProductTmp>(entity =>
+            {
+                entity.HasKey(e => e.ProductId);
+
+                entity.ToTable("ProductTMP");
+
+                entity.Property(e => e.Cost).HasColumnType("decimal(18, 0)");
+
+                entity.Property(e => e.Count).HasColumnType("decimal(18, 0)");
 
                 entity.Property(e => e.Name)
                     .IsRequired()
