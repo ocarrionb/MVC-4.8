@@ -8,12 +8,13 @@ namespace Test.Controllers
 {
     public class DonutsController : Controller
     {
-        //
-        // GET: /Donuts/
-
+        /// <summary>
+        /// Index 
+        /// </summary>
+        /// <returns></returns>
         public ActionResult Index()
         {
-            List<Donuts> donuts = new List<Donuts>();
+            List<Donuts> donuts = new List<Donuts>(); ;
             using (var db = new Models.BD.GralContext())
             {
                 donuts = (from d in db.Donuts
@@ -23,9 +24,26 @@ namespace Test.Controllers
                               Name = d.Name
                           }).ToList();
             }
-
             return View(donuts);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public ActionResult Customer()
+        {
+            var customer = new List<Customer>();
+            using (var db = new Models.BD.GralContext())
+            {
+                customer = (from d in db.Customer
+                          select new Customer
+                          {
+                              CustomerId = d.CustomerId,
+                              Name = d.Name
+                          }).ToList();
+            }
+            return View(customer);
+        }
     }
 }

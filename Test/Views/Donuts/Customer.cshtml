@@ -1,19 +1,17 @@
-﻿@model List<Test.Models.BD.Donuts>
+﻿@model List<Test.Models.BD.Customer>
 
 @{
-    ViewBag.Title = "Index";
     ViewBag.Title = "Customer";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Donuts</h2>
-
+<h2>Customer</h2>
 
 <table>
     @foreach (var donut in Model)
     {
         <tr>
-            <td>@donut.Id</td>
+            <td>@donut.CustomerId</td>
             <td>@donut.Name</td>
         </tr>
     }
